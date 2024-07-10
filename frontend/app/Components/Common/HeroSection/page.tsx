@@ -11,11 +11,13 @@ const HeroSection: React.FC = () => {
         muted
       />
       <div className="relative z-10 flex flex-col items-start justify-center w-full h-full bg-black bg-opacity-50 text-white p-10">
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between items-center w-full mb-6">
           <h1 className="text-6xl font-extrabold mb-4 text-shadow-lg animate-fadeInUp">Find & Hire Freelancers</h1>
-          <button className="px-6 py-3 text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
-            Post a Job (For Free)
-          </button>
+          <div className="absolute right-10 top-20">
+            <button className="px-12 py-6 text-xl font-semibold text-white bg-blue-800 hover:bg-blue-500 focus:outline-none rounded-full mt-80">
+              Post a Job (For Free)
+            </button>
+          </div>
         </div>
         <h2 className='text-4xl font-semibold mb-4 text-shadow-md animate-fadeInUp animation-delay-200'>Browse 3 Million+ Experts Free</h2>
         <p className="text-xl mb-6 text-shadow-sm animate-fadeInUp animation-delay-400">
@@ -29,7 +31,7 @@ const HeroSection: React.FC = () => {
             className="w-full h-full py-3 px-6 text-gray-700 focus:outline-none"
             placeholder="Search for freelancers..."
           />
-          <button className="flex items-center justify-center h-full px-5 text-white bg-black hover:bg-red-600 focus:outline-none">
+          <button className="flex items-center justify-center h-full px-5 text-white bg-blue-800 hover:bg-blue-500 focus:outline-none">
             Search
           </button>
         </div>
