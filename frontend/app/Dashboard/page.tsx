@@ -1,11 +1,14 @@
-import DashboardLayout from '../Components/DashboardLayout';
-import Talents from '../Components/Talents';
+import Sidebar from './Sidebar'
+import Talents from './Talents'
 
 const DashboardPage = () => {
   return (
-    <DashboardLayout>
-      <Talents />
-    </DashboardLayout>
+    <div className="flex">
+    <main className="flex-1 p-8">
+      <Sidebar/>
+      <Talents/>
+    </main>
+  </div>
   );
 };
 
