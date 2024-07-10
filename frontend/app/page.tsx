@@ -1,12 +1,12 @@
 import React from 'react';
+import HeroSection from './Components/Common/HeroSection/page';
+import Navbar from './Components/Common/NavBar/page';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-4xl font-bold text-center">Welcome to My App</h1>
-      {/* Add other components or content here */}
+    <div className="w-full h-screen">
+      <HeroSection />
     </div>
   );
 };
-
 export default HomePage;
