@@ -6,7 +6,6 @@ const HomePage: React.FC = () => {
   return (
     <div className="w-full h-screen">
       <HeroSection />
-      <Navbar/>
     </div>
   );
 };
