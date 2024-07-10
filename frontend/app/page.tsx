@@ -8,6 +8,7 @@ const HomePage: React.FC = () => {
     <div className="w-full h-screen">
       <HeroSection />
       <Content/>
+      
     </div>
   );
 };
