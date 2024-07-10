@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { NavBar , Footer} from "@/Components";
+import { NavBar , Footer, HeroSection} from "@/Components";
 
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ export default function RootLayout({
       <body className="relative">
         <NavBar/>
         {children}
+        <HeroSection/>
         <Footer/>
         </body>
     </html>
