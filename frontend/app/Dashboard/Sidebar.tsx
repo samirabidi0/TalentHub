@@ -19,7 +19,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="p-4 hover:bg-gray-800 transition duration-200">
-            <Link href="/dashboard/freelancer">
+            <Link href="/Dashboard/AddTalent">
               <div className="flex items-center text-lg text-gray-200 hover:text-white">
                 <FontAwesomeIcon icon={faPlusCircle} className="text-gray-400 mr-2 text-lg" />
                 <span>Add Talent</span>
