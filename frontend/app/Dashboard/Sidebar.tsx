@@ -4,31 +4,37 @@ import { faUserEdit, faPlusCircle, faSignOutAlt } from '@fortawesome/free-solid-
 
 const Sidebar = () => {
   return (
-    <div className="bg-gray-900 text-white w-64 min-h-screen flex flex-col shadow-lg">
-      <div className="p-6">
+    <div className="bg-gray-900 text-white w-56 min-h-screen flex flex-col shadow-lg">
+      <div className="p-6 bg-gray-800">
         <h1 className="text-2xl font-bold tracking-wide">Freelancer Dashboard</h1>
       </div>
       <nav className="flex-1">
         <ul>
-          <li className="p-4 hover:bg-gray-700 cursor-pointer transition duration-200">
-            <Link href="/dashboard" className="flex items-center">
-              <FontAwesomeIcon icon={faUserEdit} className="mr-3 text-sm" />
-              <span className="text-lg">Edit Profile</span>
+          <li className="p-4 hover:bg-gray-800 transition duration-200">
+            <Link href="/dashboard">
+              <div className="flex items-center text-lg text-gray-200 hover:text-white">
+                <FontAwesomeIcon icon={faUserEdit} className="text-gray-400 mr-2 text-lg" />
+                <span>Edit Profile</span>
+              </div>
             </Link>
           </li>
-          <li className="p-4 hover:bg-gray-700 cursor-pointer transition duration-200">
-            <Link href="/dashboard/freelancer" className="flex items-center">
-              <FontAwesomeIcon icon={faPlusCircle} className="mr-3 text-sm" />
-              <span className="text-lg">Add Talent</span>
+          <li className="p-4 hover:bg-gray-800 transition duration-200">
+            <Link href="/dashboard/freelancer">
+              <div className="flex items-center text-lg text-gray-200 hover:text-white">
+                <FontAwesomeIcon icon={faPlusCircle} className="text-gray-400 mr-2 text-lg" />
+                <span>Add Talent</span>
+              </div>
             </Link>
           </li>
         </ul>
       </nav>
-      <div className="p-4">
-        <button className="bg-red-500 w-full py-2 rounded flex items-center justify-center hover:bg-red-600 transition duration-200">
-          <FontAwesomeIcon icon={faSignOutAlt} className="mr-3 text-sm" />
-          <span className="text-lg">Log Out</span>
-        </button>
+      <div className="p-4 mt-auto">
+        <Link href="/">
+          <div className="flex items-center bg-red-500 hover:bg-red-600 text-lg text-white py-2 px-4 rounded transition duration-200">
+            <FontAwesomeIcon icon={faSignOutAlt} className="mr-2 text-lg" />
+            <span>Log Out</span>
+          </div>
+        </Link>
       </div>
     </div>
   );
