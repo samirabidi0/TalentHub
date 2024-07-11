@@ -68,13 +68,9 @@ const Talents = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {talents.map((talent) => (
             <div key={talent.id} className="bg-white p-4 rounded shadow flex flex-col items-center">
+              <img src={talent.imageUrl} alt={talent.title} className="rounded-lg w-full mb-4" />
               <h3 className="text-xl font-bold mb-2">{talent.title}</h3>
               <p className="mb-4">{talent.description}</p>
-              <img src={talent.imageUrl} alt={talent.title} className="rounded-lg w-full mb-4" />
-              <p>Price: ${talent.price}</p>
-              <p>Category: {talent.category}</p>
-              <p>Rating: {talent.rating}</p>
-              <p>Delivery: {talent.delivery} hours</p>
               <div className="flex space-x-2">
                 <button
                   onClick={() => handleUpdate(talent.id)}
