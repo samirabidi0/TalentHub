@@ -5,7 +5,7 @@ import styles from "../../../Card.module.css"
 const Page: React.FC = () => {
   return (
     <div>
-        <h2 className=" text-center">Find Top Freelancers</h2>
+        <h2 className=" text-center" >Find Top Freelancers</h2>
         <div className="flex justify-center items-center flex-wrap gap-8">
         <Link href="/Components/Common/Content/DetailDev">
         <div className="card card-side bg-base-100 shadow-xl">
