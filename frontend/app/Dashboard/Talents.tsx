@@ -21,7 +21,7 @@ const Talents = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen justify-between py-10">
+    <div className="flex flex-col items-center min-h-screen justify-between py-10 ml-10">
       <div className="flex flex-col items-center mb-8">
         <img
           src="https://via.placeholder.com/150"
