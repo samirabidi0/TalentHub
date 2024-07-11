@@ -1,8 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 
-
-
 const Navbar = () => {
   return (
     <nav className='flex items-center justify-between p-4 bg-black shadow-md'>
@@ -18,21 +16,24 @@ const Navbar = () => {
             <Link href='/'>Home</Link>
           </li>
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/Components/Auth/SignUp'>Post A Job</Link>
+            <Link href='/Auth/LoginForm'>Post A Job</Link>
           </li>
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/Components/Auth/SignUp'>Post A Talent</Link>
+            <Link href='/Auth/LoginForm'>Post A Talent</Link>
           </li>
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
             <Link href='/'>Category</Link>
           </li>
         </ul>
       </div>
-      <div className="login ml-28">
-        <button className='btn h-9 w-16 rounded-xl text-white hover:text-green-600 font-semibold ml-72'><Link href='/SignIn'>Login </Link></button>
-      </div>
-      <div className="sign-up">
-        <button className='btn bg-green-600 text-white h-10 w-20 rounded-xl font-semibold'><Link href='/SignUp'>Sign Up </Link></button>
+
+      <div className="flex items-center gap-4">
+        <button className='h-9 w-20 rounded-lg text-white bg-transparent border border-white hover:text-green-500 hover:border-green-500 font-semibold'>
+          <Link href='/Auth/LoginForm'>Login</Link>
+        </button>
+        <button className='h-10 w-24 rounded-lg text-white bg-green-600 hover:bg-green-500 font-semibold'>
+          <Link href='/Auth/SignUpAsClient'>Sign Up</Link>
+        </button>
       </div>
     </nav>
   );
