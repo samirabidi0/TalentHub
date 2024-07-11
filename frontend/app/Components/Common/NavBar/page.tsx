@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FcAddDatabase } from "react-icons/fc";
+
 
 
 const Navbar = () => {
@@ -21,10 +21,10 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="login ml-28">
-        <button className='btn h-9 w-16 rounded-xl text-white hover:text-green-600 font-semibold ml-72'><Link href='/Componets/Auth/LoginForm'>Login </Link></button>
+        <button className='btn h-9 w-16 rounded-xl text-white hover:text-green-600 font-semibold ml-72'><Link href='/SignIn'>Login </Link></button>
       </div>
       <div className="sign-up">
-        <button className='btn bg-green-600 text-white h-10 w-20 rounded-xl font-semibold'><Link href='/Componets/Auth/SingUp'>Sign Up </Link></button>
+        <button className='btn bg-green-600 text-white h-10 w-20 rounded-xl font-semibold'><Link href='/SignUp'>Sign Up </Link></button>
       </div>
     </nav>
   );
