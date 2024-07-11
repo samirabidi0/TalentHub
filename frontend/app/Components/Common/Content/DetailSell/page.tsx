@@ -2,23 +2,18 @@ import React from 'react';
 
 const page: React.FC = () => {
   return (
-    <div className="block rounded-lg bg-white shadow-md dark:bg-surface-dark w-[350px] h-[300px]">
-    <a href="#!">
+    <div className="card card-side bg-base-100 shadow-xl">
+    <figure>
       <img
-        className="rounded-t-lg w-full h-[250px]"
-        src="https://www.expedrion.biz/uploads/blog_featured_image/20230201084905__20230104092143__post6.jpg"
-        alt=""
-      />
-    </a>
-    <div className="p-4 text-surface dark:text-white">
-      <h5 className="mb-2 text-xl font-medium leading-tight">Card title</h5>
-      
-      <button
-        type="button"
-        className="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-lg transition duration-150 ease-in-out hover:bg-primary-accent-300 focus:bg-primary-accent-300 focus:outline-none active:bg-primary-600 dark:shadow-black/30"
-      >
-        Button
-      </button>
+        src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+        alt="Movie" />
+    </figure>
+    <div className="card-body">
+      <h2 className="card-title">New movie is released!</h2>
+      <p>Click the button to watch on Jetflix app.</p>
+      <div className="card-actions justify-end">
+        <button className="btn btn-primary">Watch</button>
+      </div>
     </div>
   </div>
   );
