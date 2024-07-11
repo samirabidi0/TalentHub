@@ -1,4 +1,6 @@
 /* styles/Card.module.css */
+/*** push project main*/
+/*** pull main*/
 
 
 @keyframes rotBGimg {
@@ -36,5 +38,5 @@
   @apply z-[1] text-white text-[1.5em];
 }
 .cardImage {
-  @apply absolute w-24 h-24 rounded-full object-cover z-[1];
+  @apply absolute top-4 right-12 w-24 h-24 rounded-full object-cover z-[1];
 }

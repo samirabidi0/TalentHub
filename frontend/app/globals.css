@@ -66,3 +66,21 @@ body {
 .animation-delay-400 {
   animation-delay: 0.4s;
 }
+
+
+/* Styling for the OurMission */
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 1s forwards;
+}
