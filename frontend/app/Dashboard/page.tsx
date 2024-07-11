@@ -4,9 +4,9 @@ import Talents from './Talents'
 const DashboardPage = () => {
   return (
     <div className="flex">
-    <main className="flex-1 p-8">
-      <Sidebar/>
-      <Talents/>
+    <main className="flex">
+    <div><Sidebar/></div>
+    <div><Talents/> </div>
     </main>
   </div>
   );
