@@ -16,10 +16,10 @@ const Navbar = () => {
             <Link href='/'>Home</Link>
           </li>
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/Auth/LoginForm'>Post A Job</Link>
+            <Link href='/LoginForm'>Post A Job</Link>
           </li>
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/Auth/LoginForm'>Post A Talent</Link>
+            <Link href='/LoginForm'>Post A Talent</Link>
           </li>
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
             <Link href='/'>Category</Link>
@@ -29,10 +29,10 @@ const Navbar = () => {
 
       <div className="flex items-center gap-4">
         <button className='h-9 w-20 rounded-lg text-white bg-transparent border border-white hover:text-green-500 hover:border-green-500 font-semibold'>
-          <Link href='/Auth/LoginForm'>Login</Link>
+          <Link href='/LoginForm'>Login</Link>
         </button>
         <button className='h-10 w-24 rounded-lg text-white bg-green-600 hover:bg-green-500 font-semibold'>
-          <Link href='/Auth/SignUpAsClient'>Sign Up</Link>
+          <Link href='/AuthSelection'>Sign Up</Link>
         </button>
       </div>
     </nav>
