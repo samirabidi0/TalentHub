@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     delivery: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
+     },
 
     freelancer_id: {
       type: DataTypes.INTEGER,

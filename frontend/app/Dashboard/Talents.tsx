@@ -1,27 +1,58 @@
-'use client';
+"use client";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-import { useState } from 'react';
-
-const initialTalents = [
-  { id: 1, name: 'Web Development', description: 'Experienced in building web applications using React, Next.js, and Tailwind CSS.' },
-  { id: 2, name: 'Graphic Design', description: 'Skilled in creating visual content using Adobe Photoshop and Illustrator.' },
-];
+// Define type for talent object
+interface Talent {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  price: number;
+  category: string;
+  rating: string;
+  delivery: string;
+}
 
 const Talents = () => {
-  const [talents, setTalents] = useState(initialTalents);
+  const [talents, setTalents] = useState<Talent[]>([]); // Initialize talents as an array of Talent
+  const [refetch, setRefetch] = useState<boolean>(false); // Set refetch as boolean
 
+  // Function to fetch all talents
+  const handleAllTalent = () => {
+    axios.get<Talent[]>('http://127.0.0.1:5000/api/talents/getAll')
+      .then((response) => {
+        setTalents(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // Function to handle talent update
   const handleUpdate = (id: number) => {
-    // Logic for updating the talent
     console.log(`Update talent with id ${id}`);
   };
 
+  // Function to handle talent deletion
   const handleDelete = (id: number) => {
-    // Logic for deleting the talent
-    setTalents(talents.filter(talent => talent.id !== id));
+    axios.delete(`http://127.0.0.1:5000/api/talents/${id}`)
+      .then((response) => {
+        console.log('Talent deleted successfully', response.data);
+        setRefetch(!refetch); // Toggle refetch to trigger useEffect
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
+  // Effect hook to fetch talents initially and on refetch change
+  useEffect(() => {
+    handleAllTalent();
+  }, [refetch]);
+
   return (
-    <div className="flex flex-col items-center min-h-screen justify-between py-10">
+    <div className="flex flex-col items-center min-h-screen justify-between py-10 ml-10">
       <div className="flex flex-col items-center mb-8">
         <img
           src="https://via.placeholder.com/150"
@@ -35,10 +66,15 @@ const Talents = () => {
       <div className="flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-4">Your Talents</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {talents.map(talent => (
+          {talents.map((talent) => (
             <div key={talent.id} className="bg-white p-4 rounded shadow flex flex-col items-center">
-              <h3 className="text-xl font-bold mb-2">{talent.name}</h3>
+              <h3 className="text-xl font-bold mb-2">{talent.title}</h3>
               <p className="mb-4">{talent.description}</p>
+              <img src={talent.imageUrl} alt={talent.title} className="rounded-lg w-full mb-4" />
+              <p>Price: ${talent.price}</p>
+              <p>Category: {talent.category}</p>
+              <p>Rating: {talent.rating}</p>
+              <p>Delivery: {talent.delivery} hours</p>
               <div className="flex space-x-2">
                 <button
                   onClick={() => handleUpdate(talent.id)}
