@@ -1,20 +1,37 @@
 "use client"
 
-import { useState } from 'react';
-import axios from 'axios';
-import Sidebar from '../Sidebar';
-import Link from 'next/link';
+import { useState } from 'react'
+import axios from 'axios'
+import Sidebar from '../Sidebar'
+import Link from 'next/link'
 
 const AddTalent = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('');
-  const [delivery, setDelivery] = useState('');
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [imageUrl, setImageUrl] = useState('')
+  const [file, setFile] = useState<File | null>(null)
+  const [price, setPrice] = useState('')
+  const [category, setCategory] = useState('')
+  const [delivery, setDelivery] = useState('')
+
+  const uploadImage = async () => {
+    if (!file) return
+    const form = new FormData()
+    form.append('file', file)
+    form.append('upload_preset', 'lobnasm')
+
+    try {
+      const result = await axios.post("https://api.cloudinary.com/v1_1/dzhteldwd/upload", form)
+      console.log(result.data.secure_url)
+      setImageUrl(result.data.secure_url)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
+    await uploadImage()
     try {
       const response = await axios.post(`http://127.0.0.1:5000/api/talents/add`, {
         title,
@@ -23,12 +40,18 @@ const AddTalent = () => {
         price,
         category,
         delivery,
-      });
-      console.log('Talent added:', response.data);
+      })
+      console.log('Talent added:', response.data)
     } catch (error) {
-      console.error('Error adding talent:', error);
+      console.error('Error adding talent:', error)
     }
-  };
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0])
+    }
+  }
 
   return (
     <div className="flex">
@@ -58,13 +81,11 @@ const AddTalent = () => {
             />
           </div>
           <div>
-            <label className="block text-lg font-semibold mb-2">Image URL</label>
+            <label className="block text-lg font-semibold mb-2">Image</label>
             <input
               type="file"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
+              onChange={handleFileChange}
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-              placeholder="Enter image URL..."
               required
             />
           </div>
@@ -105,14 +126,14 @@ const AddTalent = () => {
             />
           </div>
           <Link href={'/Dashboard'}>
-          <button type="submit" className="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200">
-            Add Talent
-          </button>
+            <button type="submit" className="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200">
+              Add Talent
+            </button>
           </Link>
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AddTalent;
+export default AddTalent
