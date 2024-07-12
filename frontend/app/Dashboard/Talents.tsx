@@ -36,9 +36,9 @@ const Talents = () => {
   //     setRefetch(!refetch); // Toggle refetch to trigger useEffect
   //   }).catch((error) => { console.log(error) })
   // };
-  const handleUpdate = (id: number) => {
-    console.log(`Update talent with id ${id}`);
-  };
+  // const handleUpdate = (id: number) => {
+  //   console.log(`Update talent with id ${id}`);
+  // };
 
   const handleDelete = (id: number) => {
     axios.delete(`http://127.0.0.1:5000/api/talents/${id}`)
@@ -85,9 +85,9 @@ const Talents = () => {
               <h3 className="text-2xl font-bold text-white mb-2">{talent.title}</h3>
               <p className="text-gray-100 mb-4">{talent.description}</p>
               <div className="flex space-x-2">
-             <Link href= "/Dashboard/UpdateTalent">
+             <Link href= {`/Dashboard/${talent.id}/UpdateTalent`}>
                 <button
-                  onClick={() => handleUpdate(talent.id)} className="bg-indigo-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110 hover:bg-indigo-600 hover:shadow-lg">
+                className="bg-indigo-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110 hover:bg-indigo-600 hover:shadow-lg">
                   Update
                 </button>
                 </Link>
