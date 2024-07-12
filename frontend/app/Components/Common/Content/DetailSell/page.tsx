@@ -1,27 +1,53 @@
+
+
 import Link from 'next/link';
 import React from 'react';
 
 const page: React.FC = () => {
   return (
-    <div>
-      <h1>Marketing</h1>
-      <Link href='/Components/Common/Content/DetailSell/Talent'>
-      <div className="w-60 bg-gradient-to-r from-purple-800 via-indigo-600 to-pink-300 rounded-lg pt-2 relative mx-auto font-sans">
-        <img src="https://www.expedrion.biz/uploads/blog_featured_image/20230201084905__20230104092143__post6.jpg" alt="Card Image" className="w-full rounded-t-lg" />
-        <div className="p-4">
-          <h2 className="font-semibold text-white text-center block h2t-1 text-lg">Name</h2>
-          <h2 className="font-semibold text-white text-center block h2t-1 text-lg">Title</h2>
-          <h2 className="font-normal text-white text-center block h2t-1 text-lg">Description</h2>
-          <h2 className="font-normal text-white text-center block h2t-1 text-lg">price</h2>
-          <div>
-            <p className="font-normal text-white text-center block pt-1 text-lg">Rating ⭐ </p>
-          </div>
-        </div>
+  
+    <div className="max-w-sm mx-auto bg-white border rounded shadow-sm mt-5">
+    <div className="relative">
+      <img src="https://kinsta.com/fr/wp-content/uploads/sites/4/2022/07/stategie-marketing-numerique.jpeg" alt="Webflow website design advertisement with a woman's picture on the right" className="w-full rounded-t"/>
+      <div className="absolute top-4 left-4 text-white">
+        <h2 className="text-xl font-bold">DESIGN</h2>
+        <h2 className="text-xl font-bold">WEBFLOW</h2>
+        <h2 className="text-xl font-bold">WEBSITE</h2>
+        
       </div>
-      </Link>
+      <div className="absolute bottom-4 right-4 flex items-center space-x-1 text-white">
+        <span className="block w-3 h-3 bg-white rounded-full"></span>
+        <span className="block w-3 h-3 bg-white rounded-full opacity-50"></span>
+        <span className="block w-3 h-3 bg-white rounded-full opacity-50"></span>
+      </div>
     </div>
+    <div className="flex items-center p-4">
+      <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Tech Wise logo" className="w-10 h-10 rounded-full"/>
+      <div className="ml-3">
+        <p className="text-sm font-semibold">Tech Wise</p>
+        <p className="text-sm text-gray-600">Je vais concevoir, repenser, mettre à jour ou réparer le site Web Webflow, convertir...</p>
+      </div>
+    </div>
+    <div className="flex items-center justify-between px-4 pb-4">
+      <p className="flex items-center text-yellow-500">
+        <i className="fas fa-star"></i>
+        <span className="ml-1 text-black font-bold">⭐4.9</span>
+        
+      </p>
+      <div className="flex items-center">
+        <span className="bg-green-600 text-white rounded-full px-2 py-1 text-xs font-bold mr-2">TalentLinkr</span>
+      </div>
+      
+      <span className="text-sm font-bold">À partir de 120 $US</span>
+    </div>
+    <Link href='/Components/Common/Content/DetailSell/Talent'>
+    <button className="mt-4 px-4 py-2 bg-blue-600 rounded-full text-white flex justify-center items-center">More Detail</button>
+    </Link>
+  </div>
 
 
   );
 };
 export default page
+
+

@@ -5,7 +5,7 @@ import styles from "../../../Card.module.css"
 const Page: React.FC = () => {
   return (
     <div>
-      <h1 className=" flex justify-center items-center flex-wrap gap-8 mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white " >Find Top Freelancers</h1>
+      <h1 className=" flex justify-center items-center flex-wrap gap-8 mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white " >Find Talent By Category</h1>
       <div className="flex justify-center items-center flex-wrap gap-8">
         <Link href="/Components/Common/Content/DetailDev">
           <div className="card card-side bg-base-100 shadow-xl">
