@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import axios from "axios";
@@ -10,17 +10,15 @@ const Login = () => {
   const [userType, setUserType] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       // Set the endpoint based on userType
-      const endpoint =
-        userType === "freelancer"
-          ? "http://127.0.0.1:5000/api/freelance/login"
-          : "http://127.0.0.1:5000/api/client/signIn";
+      const endpoint = userType === "freelancer" 
+        ? "http://127.0.0.1:5000/api/freelance/login" 
+        : "http://127.0.0.1:5000/api/client/signIn";
 
       const response = await axios.post(endpoint, {
         email,
@@ -31,7 +29,6 @@ const Login = () => {
       const { token, role } = response.data;
       // Store the token in localStorage
       localStorage.setItem("token", token);
-      setIsLoggedIn(true);
 
       // Redirect based on user type
       if (role === "freelancer") {
@@ -149,19 +146,6 @@ const Login = () => {
         </div>
 
         {error && <p className="text-red-500 text-xs italic text-center mt-4">{error}</p>}
-        {isLoggedIn && (
-          <div className="text-center text-sm mt-4">
-            <button
-              className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out"
-              onClick={() => {
-                localStorage.removeItem("token");
-                setIsLoggedIn(false);
-              }}
-            >
-              Logout
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

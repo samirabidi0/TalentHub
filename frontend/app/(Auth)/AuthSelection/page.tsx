@@ -4,9 +4,8 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 
 interface AuthSelectionProps {
-  role: string; //defining the type of the role 
+  role: string; // Define role prop here
 }
-
 const AuthSelection: React.FC<AuthSelectionProps> = ({ role })  => {
   const router = useRouter();
 
