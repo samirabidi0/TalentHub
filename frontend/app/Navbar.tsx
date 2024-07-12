@@ -1,7 +1,25 @@
-import React from 'react';
+"use client"
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Correct import for useRouter
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    router.push('/');
+  };
+
   return (
     <nav className='flex items-center justify-between p-4 bg-black shadow-md'>
       <Link href='/'>
@@ -28,12 +46,20 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <button className='h-9 w-20 rounded-lg text-white bg-transparent border border-white hover:text-green-500 hover:border-green-500 font-semibold'>
-          <Link href='/LoginForm'>Login</Link>
-        </button>
-        <button className='h-10 w-24 rounded-lg text-white bg-green-600 hover:bg-green-500 font-semibold'>
-          <Link href='/AuthSelection'>Sign Up</Link>
-        </button>
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className='h-9 w-20 rounded-lg text-white bg-transparent border border-white hover:text-green-500 hover:border-green-500 font-semibold'>
+            Logout
+          </button>
+        ) : (
+          <>
+            <button className='h-9 w-20 rounded-lg text-white bg-transparent border border-white hover:text-green-500 hover:border-green-500 font-semibold'>
+              <Link href='/LoginForm'>Login</Link>
+            </button>
+            <button className='h-10 w-24 rounded-lg text-white bg-green-600 hover:bg-green-500 font-semibold'>
+              <Link href='/AuthSelection'>Sign Up</Link>
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );
