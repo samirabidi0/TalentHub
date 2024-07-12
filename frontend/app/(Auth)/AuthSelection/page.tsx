@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 interface AuthSelectionProps {
   role: string; //defining the type of the role 
