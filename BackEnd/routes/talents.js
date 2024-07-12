@@ -24,7 +24,7 @@ async function handleUpload(file) {
     });
     return res.secure_url
 }
-router.post("/upload", upload.single("my_file"), async (req, res) => {
+router.post("/upload", upload.single("file"), async (req, res) => {
 
     try {
         const b64 = Buffer.from(req.file.buffer).toString("base64")

@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Link from 'next/link';
+
 
 // Define type for talent object
 interface Talent {
@@ -27,10 +29,16 @@ const Talents = () => {
         console.log(error);
       });
   };
-
-  const handleUpdate = (id: number) => {
-    console.log(`Update talent with id ${id}`);
-  };
+  // // Function to handle talent update
+  // const handleUpdate = (id: number , newdata :Object) => {
+  //   axios.put(`http://127.0.0.1:5000/api/talents/${id}`, newdata).then((response) => {
+  //     console.log('Talent updated successfully', response.data)
+  //     setRefetch(!refetch); // Toggle refetch to trigger useEffect
+  //   }).catch((error) => { console.log(error) })
+  // };
+  // const handleUpdate = (id: number) => {
+  //   console.log(`Update talent with id ${id}`);
+  // };
 
   const handleDelete = (id: number) => {
     axios.delete(`http://127.0.0.1:5000/api/talents/${id}`)
@@ -77,12 +85,12 @@ const Talents = () => {
               <h3 className="text-2xl font-bold text-white mb-2">{talent.title}</h3>
               <p className="text-gray-100 mb-4">{talent.description}</p>
               <div className="flex space-x-2">
+             <Link href= {`/Dashboard/${talent.id}/UpdateTalent`}>
                 <button
-                  onClick={() => handleUpdate(talent.id)}
-                  className="bg-indigo-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110 hover:bg-indigo-600 hover:shadow-lg"
-                >
+                className="bg-indigo-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110 hover:bg-indigo-600 hover:shadow-lg">
                   Update
                 </button>
+                </Link>
                 <button
                   onClick={() => handleDelete(talent.id)}
                   className="bg-red-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110 hover:bg-red-600 hover:shadow-lg"
@@ -94,6 +102,7 @@ const Talents = () => {
           ))}
         </div>
       </div>
+      
     </div>
   );
 };
