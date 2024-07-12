@@ -26,7 +26,7 @@ const DEV =[
     "id":3,
     "title": "Marketing Essentials",
     "description": "An in-depth course ,covering the fundamentals of modern marketing strategies.",
-    "imageUrl": "https://cdn.pixabay.com/photo/2021/08/04/13/06/software-developer-6521720_640.jpg",
+    "imageUrl": "https://smdi.tn/images/services/1690968365.jpg",
     "price": 199,
     "category": "Dev",
     "rating": 4,
@@ -46,7 +46,7 @@ const DEV =[
     "id":5,
     "title": "Creative Writing Workshop",
     "description": "Enhance your creative writing, skills with guided workshops.",
-    "imageUrl": "https://www.centre-europeen-formation.fr/wp-content/uploads/2023/03/slider-developpeur-web.jpeg",
+    "imageUrl": "https://smdi.tn/images/services/1690968365.jpg",
     "price": 149,
     "category": "Dev",
     "rating": 3,
@@ -98,7 +98,7 @@ const page: React.FC = () => {
             </div>
             <span className="text-sm font-bold">À partir {element.price} $US</span>
           </div>
-          <Link href={`/Components/Common/Content/DetailDev/${element.id}`}>
+          <Link href={`/Components/Common/Content/DetailDev/Talent/${element.id}`}>
             <button className="mt-4 px-4 py-2 bg-blue-600 rounded-full text-white flex justify-center items-center">More Detail</button>
           </Link>
         </div>

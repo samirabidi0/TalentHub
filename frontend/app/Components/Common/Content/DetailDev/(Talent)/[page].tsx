@@ -123,7 +123,7 @@ const page: React.FC  = () => {
     placeholder="Write a comment..." required></textarea>
 </div>
                 
-                <button className="w-full bg-black text-white py-2 rounded-lg flex items-center justify-center"><span className="mr-2">Continuer</span><i className="fas fa-arrow-right"></i></button>
+                <button className="w-full bg-black text-white py-2 rounded-lg flex items-center justify-center"><span className="mr-2">Apply</span><i className="fas fa-arrow-right"></i></button>
             </div>
             
         </div>
