@@ -40,6 +40,7 @@ const page: React.FC = () => {
       
       <span className="text-sm font-bold">À partir de 120 $US</span>
     </div>
+    
     <Link href='/Components/Common/Content/DetailSell/Talent'>
     <button className="mt-4 px-4 py-2 bg-blue-600 rounded-full text-white flex justify-center items-center">More Detail</button>
     </Link>
