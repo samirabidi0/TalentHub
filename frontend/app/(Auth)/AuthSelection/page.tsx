@@ -1,7 +1,23 @@
-import React from 'react';
-import Link from 'next/link';
+"use client"
 
-const AuthSelection = () => {
+import React from 'react';
+import { useRouter } from 'next/navigation';
+
+
+interface AuthSelectionProps {
+  role: string; // Define role prop here
+}
+const AuthSelection: React.FC<AuthSelectionProps> = ({ role })  => {
+  const router = useRouter();
+
+  const handleRoleSelection = (role: string) => {
+    if (role === 'freelancer') {
+      router.push('/SignUpAsFreelancer');
+    } else if (role === 'client') {
+      router.push('/SignUpAsClient');
+    }
+  };
+
   return (
     <div className="flex flex-col md:flex-row h-screen">
       {/* Left Side - Sign Up as Client */}
@@ -20,11 +36,12 @@ const AuthSelection = () => {
             <p className="text-xl text-gray-300 mb-6 drop-shadow-lg">
               Join us and find the perfect professionals for your projects.
             </p>
-            <Link href="/SignUpAsClient">
-              <button className="bg-green-600 hover:bg-green-500 text-white py-3 px-6 rounded-lg font-semibold transition-transform transform hover:scale-110 animate-pulse text-xl">
-                Join as a Client
-              </button>
-            </Link>
+            <button
+              onClick={() => handleRoleSelection('client')}
+              className="bg-green-600 hover:bg-green-500 text-white py-3 px-6 rounded-lg font-semibold transition-transform transform hover:scale-110 animate-pulse text-xl"
+            >
+              Join as a Client
+            </button>
           </div>
         </div>
       </div>
@@ -45,11 +62,12 @@ const AuthSelection = () => {
             <p className="text-xl text-gray-300 mb-6 drop-shadow-lg">
               Join our community of freelancers and find exciting projects to work on.
             </p>
-            <Link href="/SignUpAsFreelancer">
-              <button className="bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg font-semibold transition-transform transform hover:scale-110 animate-pulse text-xl">
-                Join as a Freelancer
-              </button>
-            </Link>
+            <button
+              onClick={() => handleRoleSelection('freelancer')}
+              className="bg-blue-600 hover:bg-blue-500 text-white py-3 px-6 rounded-lg font-semibold transition-transform transform hover:scale-110 animate-pulse text-xl"
+            >
+              Join as a Freelancer
+            </button>
           </div>
         </div>
       </div>
