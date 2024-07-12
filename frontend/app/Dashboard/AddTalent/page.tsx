@@ -18,10 +18,10 @@ const AddTalent = () => {
     if (!file) return
     const form = new FormData()
     form.append('file', file)
-    form.append('upload_preset', 'lobnasm')
+    form.append('upload_preset', 'Da7eddine')
 
     try {
-      const result = await axios.post("https://api.cloudinary.com/v1_1/dzhteldwd/upload", form)
+      const result = await axios.post("https://api.cloudinary.com/v1_1/dvlzzeglx/upload", form)
       console.log(result.data.secure_url)
       setImageUrl(result.data.secure_url)
     } catch (error) {
