@@ -11,7 +11,7 @@ const Sidebar = () => {
       <nav className="flex-1">
         <ul>
           <li className="p-4 hover:bg-gray-800 transition duration-300 ease-in-out transform hover:translate-x-1">
-            <Link href="/dashboard">
+            <Link href="/Dashboard/EditProfile">
               <div className="flex items-center text-lg text-gray-200 hover:text-white group">
                 <FontAwesomeIcon icon={faUserCircle} className="text-gray-400 mr-2 text-sm group-hover:animate-bounce h-8" />
                 <span className="group-hover:underline">Edit Profile</span>
