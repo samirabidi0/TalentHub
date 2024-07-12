@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Link from 'next/link';
+
 
 // Define type for talent object
 interface Talent {
@@ -29,10 +31,13 @@ const Talents = () => {
       });
   };
 
-  // Function to handle talent update
-  const handleUpdate = (id: number) => {
-    console.log(`Update talent with id ${id}`);
-  };
+  // // Function to handle talent update
+  // const handleUpdate = (id: number , newdata :Object) => {
+  //   axios.put(`http://127.0.0.1:5000/api/talents/${id}`, newdata).then((response) => {
+  //     console.log('Talent updated successfully', response.data)
+  //     setRefetch(!refetch); // Toggle refetch to trigger useEffect
+  //   }).catch((error) => { console.log(error) })
+  // };
 
   // Function to handle talent deletion
   const handleDelete = (id: number) => {
@@ -52,7 +57,7 @@ const Talents = () => {
   }, [refetch]);
 
   return (
-    <div className="flex flex-col items-center min-h-screen justify-between py-10">
+    <div className="flex flex-col items-center min-h-screen justify-between py-10 ml-10">
       <div className="flex flex-col items-center mb-8">
         <img
           src="https://via.placeholder.com/150"
@@ -68,20 +73,15 @@ const Talents = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {talents.map((talent) => (
             <div key={talent.id} className="bg-white p-4 rounded shadow flex flex-col items-center">
+              <img src={talent.imageUrl} alt={talent.title} className="rounded-lg w-full mb-4" />
               <h3 className="text-xl font-bold mb-2">{talent.title}</h3>
               <p className="mb-4">{talent.description}</p>
-              <img src={talent.imageUrl} alt={talent.title} className="rounded-lg w-full mb-4" />
-              <p>Price: ${talent.price}</p>
-              <p>Category: {talent.category}</p>
-              <p>Rating: {talent.rating}</p>
-              <p>Delivery: {talent.delivery} hours</p>
               <div className="flex space-x-2">
-                <button
-                  onClick={() => handleUpdate(talent.id)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                  Update
+             <Link href= "/Dashboard/UpdateTalent">
+                <button className="bg-blue-500 text-white px-4 py-2 rounded">
+                 Update     
                 </button>
+                </Link>
                 <button
                   onClick={() => handleDelete(talent.id)}
                   className="bg-red-500 text-white px-4 py-2 rounded"
@@ -93,6 +93,7 @@ const Talents = () => {
           ))}
         </div>
       </div>
+      
     </div>
   );
 };

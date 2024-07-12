@@ -1,21 +1,30 @@
+import Link from 'next/link';
 import React from 'react';
 
 const page: React.FC = () => {
   return (
-    <div className="card card-side bg-base-100 shadow-xl">
-    <figure>
-      <img
-        src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-        alt="Movie" />
-    </figure>
-    <div className="card-body">
-      <h2 className="card-title">New movie is released!</h2>
-      <p>Click the button to watch on Jetflix app.</p>
-      <div className="card-actions justify-end">
-        <button className="btn btn-primary">Watch</button>
+    <div>
+      <h1>Développement de sites Web</h1>
+      <Link href='/Components/Common/Content/DetailDev/Talent'>
+      <div className="w-60 bg-gradient-to-r from-purple-800 via-indigo-600 to-pink-300 rounded-lg pt-2 relative mx-auto font-sans">
+        <img src="https://www.expedrion.biz/uploads/blog_featured_image/20230201084905__20230104092143__post6.jpg" alt="Card Image" className="w-full rounded-t-lg" />
+        <div className="p-4">
+          <h2 className="font-semibold text-white text-center block h2t-1 text-lg">Name</h2>
+          <h2 className="font-semibold text-white text-center block h2t-1 text-lg">Title</h2>
+          <h2 className="font-normal text-white text-center block h2t-1 text-lg">Description</h2>
+          <h2 className="font-normal text-white text-center block h2t-1 text-lg">price</h2>
+          <div>
+            <p className="font-normal text-white text-center block pt-1 text-lg">Rating ⭐ </p>
+
+          </div>
+        </div>
+
       </div>
+      </Link>
+
     </div>
-  </div>
+
+
   );
 };
 export default page
