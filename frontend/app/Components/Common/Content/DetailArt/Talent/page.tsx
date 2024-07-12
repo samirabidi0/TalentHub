@@ -46,6 +46,12 @@ const page: React.FC  = () => {
                     <li className="flex items-center"><i className="fas fa-truck mr-2"></i> Livraison en 3 jour(s)</li>
                    
                 </ul>
+                <div className="py-2 px-4 mb-4 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+  <label  className="sr-only">Your comment</label>
+  <textarea id="comment" 
+    className="w-full text-sm text-gray-900 bg-white border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+    placeholder="Write a comment..." required></textarea>
+</div>
                 
                 <button className="w-full bg-black text-white py-2 rounded-lg flex items-center justify-center"><span className="mr-2">Continuer</span><i className="fas fa-arrow-right"></i></button>
             </div>
