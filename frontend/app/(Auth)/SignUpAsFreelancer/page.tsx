@@ -39,7 +39,7 @@ const SignUpAsFreelancer: React.FC = () => {
     try {
       const response = await axios.post('http://127.0.0.1:5000/api/freelance/register', newUser);
       console.log(response.data);
-      router.push('/Dashboard'); // Redirect after successful registration to his dashboard
+      router.push('/LoginForm'); // Redirect after successful registration to his dashboard
     } catch (error: any) {
       setError(error.message);
     }

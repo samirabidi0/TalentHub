@@ -29,6 +29,7 @@ const Login = () => {
       const { token, role } = response.data;
       // Store the token in localStorage
       localStorage.setItem("token", token);
+      localStorage.setItem('role',  role);
 
       // Redirect based on user type
       if (role === "freelancer") {

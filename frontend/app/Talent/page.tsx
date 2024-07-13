@@ -1,8 +1,9 @@
-
+// Talents.tsx
 'use client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useCategory } from '../../app/CategorieContext/CategoryContext';
 
 interface Talent {
   id: number;
@@ -16,7 +17,9 @@ interface Talent {
 }
 
 const Page: React.FC = () => {
+  const { selectedCategory } = useCategory();
   const [talents, setTalents] = useState<Talent[]>([]);
+  const [filteredTalents, setFilteredTalents] = useState<Talent[]>([]);
 
   useEffect(() => {
     const fetchTalents = async () => {
@@ -31,9 +34,17 @@ const Page: React.FC = () => {
     fetchTalents();
   }, []);
 
+  useEffect(() => {
+    if (selectedCategory) {
+      setFilteredTalents(talents.filter(talent => talent.category === selectedCategory));
+    } else {
+      setFilteredTalents(talents);
+    }
+  }, [selectedCategory, talents]);
+
   return (
-    <div className="flex flex-wrap justify-center">
-      {talents.map((element) => (
+    <div id="talents-section" className="flex flex-wrap justify-center">
+      {filteredTalents.map((element) => (
         <div key={element.id} className="max-w-sm mx-4 bg-white border rounded shadow-sm mt-5 flex-shrink-0">
           <div className="relative">
             <img src={element.imageUrl} alt={element.title} className="w-full rounded-t"/>
@@ -64,7 +75,9 @@ const Page: React.FC = () => {
             <span className="text-sm font-bold">À partir {element.price} $US</span>
           </div>
           <Link href={`/Talent/TalentDetail?id=${element.id}&title=${element.title}&description=${element.description}&imageUrl=${element.imageUrl}&price=${element.price}&category=${element.category}&rating=${element.rating}&delivery=${element.delivery}`}>
-            <button className="mt-4 px-4 py-2 bg-blue-600 rounded-full text-white flex justify-center items-center">More Detail</button>
+            <button className="w-full bg-blue-600 text-white py-2 rounded-b hover:bg-blue-700">
+              See More
+            </button>
           </Link>
         </div>
       ))}
@@ -73,10 +86,3 @@ const Page: React.FC = () => {
 };
 
 export default Page;
-
-
-
-
-
-
-
