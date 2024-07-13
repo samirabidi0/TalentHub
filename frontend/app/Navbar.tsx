@@ -1,9 +1,12 @@
+// Navbar.tsx
 "use client"
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useCategory } from '../app/CategorieContext/CategoryContext';
 
 const Navbar = () => {
+  const { setSelectedCategory } = useCategory();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState('');
   const router = useRouter();
@@ -27,6 +30,11 @@ const Navbar = () => {
     router.push('/Dashboard');
   };
 
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategory(category);
+    document.getElementById('talents-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <nav className='flex items-center justify-between p-4 bg-black shadow-md relative z-10'>
       <Link href='/'>
@@ -40,14 +48,14 @@ const Navbar = () => {
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
             <Link href='/'>Home</Link>
           </li>
-          <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/category/programming'>Programming</Link>
+          <li className='cursor-pointer hover:text-green-500 font-semibold' onClick={() => handleCategoryClick('Programming')}>
+            Programming
           </li>
-          <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/category/art-design'>Art & Design</Link>
+          <li className='cursor-pointer hover:text-green-500 font-semibold' onClick={() => handleCategoryClick('Art & Design')}>
+            Art & Design
           </li>
-          <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/category/marketing'>Marketing</Link>
+          <li className='cursor-pointer hover:text-green-500 font-semibold' onClick={() => handleCategoryClick('Marketing')}>
+            Marketing
           </li>
         </ul>
       </div>
