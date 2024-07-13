@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import Sidebar from '../Sidebar'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const AddTalent = () => {
   const [title, setTitle] = useState('')
@@ -14,6 +14,8 @@ const AddTalent = () => {
   const [category, setCategory] = useState('')
   const [delivery, setDelivery] = useState('')
   const [res, setRes] = useState({})
+
+  const router = useRouter()
 
   const handleUpload = async () => {
     if (!file) {
@@ -59,6 +61,8 @@ const AddTalent = () => {
         delivery,
       })
       console.log('Talent added:', response.data)
+      // Redirect to the dashboard after adding the talent
+      router.push('/Dashboard')
     } catch (error) {
       console.error('Error adding talent:', error)
     }
@@ -142,11 +146,12 @@ const AddTalent = () => {
               required
             />
           </div>
-          <Link href={'/Dashboard'}>
-            <button type="submit" onClick={handleSubmit} className="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200">
-              Add Talent
-            </button>
-          </Link>
+          <button
+            type="submit"
+            className="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200"
+          >
+            Add Talent
+          </button>
         </form>
       </div>
     </div>

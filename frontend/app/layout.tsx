@@ -19,6 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
+    // we need to wrap our application with the context Provider so it can be accessible in any compnent without passing props
     <html lang="en">
       <body className={inter.className}>
         <CategoryProvider >
