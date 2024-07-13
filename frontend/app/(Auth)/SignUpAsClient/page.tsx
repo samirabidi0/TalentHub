@@ -8,7 +8,7 @@ interface User {
   name: string;
   email: string;
   password: string;
-  address: string;
+  adress: string;
   phoneNumber: string;
   imageUrl: string;
 }
@@ -17,7 +17,7 @@ const SignUpAsClient: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
+  const [adress, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -28,7 +28,7 @@ const SignUpAsClient: React.FC = () => {
     event.preventDefault();
 
     // Basic validation
-    if (!name || !email || !password || !address || !phoneNumber) {
+    if (!name || !email || !password || !adress || !phoneNumber) {
       setError('Please fill all the fields');
       return;
     }
@@ -51,7 +51,7 @@ const SignUpAsClient: React.FC = () => {
       name,
       email,
       password,
-      address,
+      adress,
       phoneNumber,
       imageUrl
     };
@@ -124,7 +124,7 @@ const SignUpAsClient: React.FC = () => {
             type="text"
             id="address"
             name="address"
-            value={address}
+            value={adress}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="Enter your address"
             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline transition duration-300 ease-in-out"

@@ -13,25 +13,42 @@ const AddTalent = () => {
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState('')
   const [delivery, setDelivery] = useState('')
+  const [res, setRes] = useState({})
 
-  const uploadImage = async () => {
-    if (!file) return
-    const form = new FormData()
-    form.append('file', file)
-    form.append('upload_preset', 'lobnasm')
+  const handleUpload = async () => {
+    if (!file) {
+      alert("Please select a file to upload.")
+      return
+    }
 
     try {
-      const result = await axios.post("https://api.cloudinary.com/v1_1/dzhteldwd/upload", form)
-      console.log(result.data.secure_url)
-      setImageUrl(result.data.secure_url)
-    } catch (error) {
-      console.log(error)
+      const data = new FormData()
+      data.append("file", file)
+      // Append other fields to the FormData object
+      data.append("title", title)
+      data.append("description", description)
+      data.append("price", price)
+      data.append("category", category)
+      data.append("delivery", delivery)
+
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+      const res = await axios.post("http://127.0.0.1:5000/api/talents/upload", data, config)
+      setRes(res.data)
+      setImageUrl(res.data.secure_url)
+      console.log(res.data.secure_url)
+      console.log('Talent added successfully')
+    } catch (error: any) {
+      alert(error.message)
     }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await uploadImage()
+    await handleUpload()
     try {
       const response = await axios.post(`http://127.0.0.1:5000/api/talents/add`, {
         title,
@@ -126,7 +143,7 @@ const AddTalent = () => {
             />
           </div>
           <Link href={'/Dashboard'}>
-            <button type="submit" className="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200">
+            <button type="submit" onClick={handleSubmit} className="w-full bg-black text-white p-3 rounded-lg font-semibold hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-200">
               Add Talent
             </button>
           </Link>
