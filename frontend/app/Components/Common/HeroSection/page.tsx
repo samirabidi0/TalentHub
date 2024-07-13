@@ -14,8 +14,8 @@ const HeroSection: React.FC = () => {
         <div className="flex justify-between items-center w-full mb-6">
           <h1 className="text-6xl font-extrabold mb-4 text-shadow-lg animate-fadeInUp">Find & Hire Freelancers</h1>
           <div className="absolute right-10 top-20">
-            <button className="px-12 py-6 text-xl font-semibold text-white bg-green-600 hover:bg-green-500 focus:outline-none rounded-full mt-80">
-              Post a Job (For Free)
+            <button className="px-12 py-6 text-xl font-semibold text-white bg-green-600 hover:bg-green-500 focus:outline-none rounded-full mt-80 animate-bounce">
+              Post a Talent (For Free)
             </button>
           </div>
         </div>

@@ -5,17 +5,26 @@ import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [role, setRole] = useState('');
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!token); 
+    const userRole = localStorage.getItem('role');
+    setIsLoggedIn(!!token);
+    setRole(userRole || ''); 
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     setIsLoggedIn(false);
+    setRole('');
     router.push('/');
+  };
+
+  const handleDashboardClick = () => {
+    router.push('/Dashboard');
   };
 
   return (
@@ -32,30 +41,35 @@ const Navbar = () => {
             <Link href='/'>Home</Link>
           </li>
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/PostTalent'>Post A Talent</Link>
+            <Link href='/category/programming'>Programming</Link>
           </li>
-          <li className='relative cursor-pointer group'>
-            <span className='hover:text-green-500 font-semibold'>Category</span>
-            <ul className='absolute hidden bg-black text-gray-300 group-hover:block z-20'>
-              <li>
-                <Link href='/category/programming'>Programming</Link>
-              </li>
-              <li>
-                <Link href='/category/art-design'>Art & Design</Link>
-              </li>
-              <li>
-                <Link href='/category/marketing'>Marketing</Link>
-              </li>
-            </ul>
+          <li className='cursor-pointer hover:text-green-500 font-semibold'>
+            <Link href='/category/art-design'>Art & Design</Link>
+          </li>
+          <li className='cursor-pointer hover:text-green-500 font-semibold'>
+            <Link href='/category/marketing'>Marketing</Link>
           </li>
         </ul>
       </div>
 
       <div className="flex items-center gap-4">
         {isLoggedIn ? (
-          <button onClick={handleLogout} className='h-9 w-20 rounded-lg text-white bg-transparent border border-white hover:text-green-500 hover:border-green-500 font-semibold'>
-            Logout
-          </button>
+          <>
+            {role === 'freelancer' && (
+              <button
+                onClick={handleDashboardClick}
+                className='h-10 w-24 rounded-lg text-white bg-blue-600 hover:bg-blue-500 font-semibold'
+              >
+                Dashboard
+              </button>
+            )}
+            <button
+              onClick={handleLogout}
+              className='h-10 w-24 rounded-lg text-white bg-red-600 hover:bg-red-500 font-semibold'
+            >
+              Logout
+            </button>
+          </>
         ) : (
           <>
             <button className='h-9 w-20 rounded-lg text-white bg-transparent border border-white hover:text-green-500 hover:border-green-500 font-semibold'>
