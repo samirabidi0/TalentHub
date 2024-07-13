@@ -2,7 +2,7 @@
 import React from 'react';
 import HeroSection from './Components/Common/HeroSection/page';
 import OurMission from './Components/Common/OurMission/page';
-import Content from './Components/Common/Content/page';
+import Talent from './Talent/page';
 import OurServices from './Components/Common/OurServices/Page';
 import Intersted from './Components/Common/Intersted/page';
 import NumberOfUsers from './Components/Common/NumberOfUsers/page';
@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
       <OurMission />
       <NumberOfUsers/>
       <OurServices/>
-      <Content/>
+      <Talent/>
       <Intersted/>
     </div>
   );
