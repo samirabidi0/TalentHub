@@ -1,17 +1,15 @@
 "use client"
-
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!token);
+    setIsLoggedIn(!token); 
   }, []);
 
   const handleLogout = () => {
@@ -21,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='flex items-center justify-between p-4 bg-black shadow-md'>
+    <nav className='flex items-center justify-between p-4 bg-black shadow-md relative z-10'>
       <Link href='/'>
         <div className="logo cursor-pointer">
           <img src="https://www.talentlinkr.fr/wp-content/uploads/2016/04/talentlinkr-logo-white.png" className='w-40 ml-4' alt="Logo" />
@@ -34,13 +32,21 @@ const Navbar = () => {
             <Link href='/'>Home</Link>
           </li>
           <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/LoginForm'>Post A Job</Link>
+            <Link href='/PostTalent'>Post A Talent</Link>
           </li>
-          <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/LoginForm'>Post A Talent</Link>
-          </li>
-          <li className='cursor-pointer hover:text-green-500 font-semibold'>
-            <Link href='/'>Category</Link>
+          <li className='relative cursor-pointer group'>
+            <span className='hover:text-green-500 font-semibold'>Category</span>
+            <ul className='absolute hidden bg-black text-gray-300 group-hover:block z-20'>
+              <li>
+                <Link href='/category/programming'>Programming</Link>
+              </li>
+              <li>
+                <Link href='/category/art-design'>Art & Design</Link>
+              </li>
+              <li>
+                <Link href='/category/marketing'>Marketing</Link>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>

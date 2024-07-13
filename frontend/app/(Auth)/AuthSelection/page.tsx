@@ -3,7 +3,6 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-
 interface AuthSelectionProps {
   role: string; // Define role prop here
 }

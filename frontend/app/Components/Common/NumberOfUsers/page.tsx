@@ -9,6 +9,8 @@ const NumberOfUsers = () => {
 
   useEffect(() => {
     const startCounting = (setState: React.Dispatch<React.SetStateAction<number>>, target: number) => {
+
+        //logic for starting the count from 0 until reaching the selected number
       let current = 0;
       const increment = target / 150; 
       const interval = setInterval(() => {
@@ -22,7 +24,7 @@ const NumberOfUsers = () => {
       }, 20);
     };
 
-    startCounting(setFreelancers, 1200000);
+    startCounting(setFreelancers, 985475);
     startCounting(setEmployers, 98);
     startCounting(setInnovations, 1246);
     startCounting(setBlogUpdates, 980);
