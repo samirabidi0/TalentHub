@@ -1,8 +1,8 @@
 "use client"
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import RegistrationSuccessPopup from './PopUp'; 
 
 interface User {
   name: string;
@@ -21,6 +21,7 @@ const SignUpAsFreelancer: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false); // State to manage popup display
 
   const router = useRouter();
 
@@ -39,7 +40,8 @@ const SignUpAsFreelancer: React.FC = () => {
     try {
       const response = await axios.post('http://127.0.0.1:5000/api/freelance/register', newUser);
       console.log(response.data);
-      router.push('/LoginForm'); // Redirect after successful registration to his dashboard
+      setShowSuccessPopup(true); // update the state to  Show popup on successful registration
+     
     } catch (error: any) {
       setError(error.message);
     }
@@ -177,6 +179,10 @@ const SignUpAsFreelancer: React.FC = () => {
         </div>
         {error && <p className="text-red-500 text-xs italic text-center mt-4">{error}</p>}
       </form>
+
+      {/* Conditional rendering of success popup */}
+      {showSuccessPopup && <RegistrationSuccessPopup message="Congratulations!" />}
+
     </div>
   );
 };
