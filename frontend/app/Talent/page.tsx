@@ -88,12 +88,7 @@ const Page: React.FC = () => {
               See More
             </button>
           </Link>
-          <button 
-            onClick={() => handleApply(element)} 
-            className="mt-4 px-4 py-2 bg-green-600 rounded-full text-white flex justify-center items-center"
-          >
-            Apply
-          </button>
+       
         </div>
       ))}
     </div>

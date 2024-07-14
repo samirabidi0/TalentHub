@@ -1,10 +1,8 @@
-"use client";
+'use client';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
-
-// Define type for talent object
 interface Talent {
   id: number;
   title: string;
@@ -18,6 +16,7 @@ interface Talent {
 
 const Talents = () => {
   const [talents, setTalents] = useState<Talent[]>([]);
+  const [profileImage, setProfileImage] = useState<string>('https://via.placeholder.com/150');
   const [refetch, setRefetch] = useState<boolean>(false);
 
   const handleAllTalent = () => {
@@ -29,16 +28,6 @@ const Talents = () => {
         console.log(error);
       });
   };
-  // // Function to handle talent update
-  // const handleUpdate = (id: number , newdata :Object) => {
-  //   axios.put(`http://127.0.0.1:5000/api/talents/${id}`, newdata).then((response) => {
-  //     console.log('Talent updated successfully', response.data)
-  //     setRefetch(!refetch); // Toggle refetch to trigger useEffect
-  //   }).catch((error) => { console.log(error) })
-  // };
-  // const handleUpdate = (id: number) => {
-  //   console.log(`Update talent with id ${id}`);
-  // };
 
   const handleDelete = (id: number) => {
     axios.delete(`http://127.0.0.1:5000/api/talents/${id}`)
@@ -51,6 +40,25 @@ const Talents = () => {
       });
   };
 
+  const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const formData = new FormData();
+      formData.append('image', event.target.files[0]);
+
+      try {
+        const response = await axios.post('http://127.0.0.1:5000/api/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        setProfileImage(response.data.imageUrl);
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    }
+  };
+
   useEffect(() => {
     handleAllTalent();
   }, [refetch]);
@@ -58,10 +66,17 @@ const Talents = () => {
   return (
     <div className="flex flex-col items-center min-h-screen justify-between py-10 ml-10 bg-gradient-to-b from-gray-800 to-gray-900 text-white">
       <div className="flex flex-col items-center mb-8">
+        <input
+          type="file"
+          id="profileImageInput"
+          style={{ display: 'none' }}
+          onChange={handleImageChange}
+        />
         <img
-          src="https://via.placeholder.com/150"
+          src={profileImage}
           alt="Profile"
-          className="rounded-full w-32 h-32 mb-4 transition-transform duration-500 hover:scale-110 hover:rotate-12"
+          className="rounded-full w-32 h-32 mb-4 transition-transform duration-500 hover:scale-110 hover:rotate-12 cursor-pointer"
+          onClick={() => document.getElementById('profileImageInput')?.click()}
         />
         <p className="text-center max-w-md text-gray-200 text-lg">
           Hello, I am a highly skilled freelancer with a passion for web development and graphic design. I love creating beautiful and functional web applications and stunning visual content.
@@ -85,11 +100,12 @@ const Talents = () => {
               <h3 className="text-2xl font-bold text-white mb-2">{talent.title}</h3>
               <p className="text-gray-100 mb-4">{talent.description}</p>
               <div className="flex space-x-2">
-             <Link href= {`/Dashboard/${talent.id}/UpdateTalent`}>
-                <button
-                className="bg-indigo-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110 hover:bg-indigo-600 hover:shadow-lg">
-                  Update
-                </button>
+                <Link href={`/Dashboard/${talent.id}/UpdateTalent`}>
+                  <button
+                    className="bg-indigo-500 text-white px-4 py-2 rounded transition-transform duration-300 hover:scale-110 hover:bg-indigo-600 hover:shadow-lg"
+                  >
+                    Update
+                  </button>
                 </Link>
                 <button
                   onClick={() => handleDelete(talent.id)}
@@ -102,7 +118,6 @@ const Talents = () => {
           ))}
         </div>
       </div>
-      
     </div>
   );
 };

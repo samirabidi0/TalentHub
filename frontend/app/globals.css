@@ -172,3 +172,17 @@ body {
 .animate-bounce {
   animation: bounce 1s infinite;
 }
+
+
+@keyframes scale-up {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-scale-up {
+  animation: scale-up 0.5s ease-in-out;
+}
