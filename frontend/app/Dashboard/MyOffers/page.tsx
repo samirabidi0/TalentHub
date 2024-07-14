@@ -20,7 +20,7 @@ const MyOffer: React.FC = () => {
   useEffect(() => {
     const fetchAppliedTalents = async () => {
       try {
-        const response = await axios.get<Talent[]>('http://127.0.0.1:5000/api/instructors/applied');
+        const response = await axios.get<Talent[]>('http://127.0.0.1:5000/api/clientTalent/getAllTalent');
         setAppliedTalents(response.data);
       } catch (error) {
         console.error('Error fetching applied talents:', error);

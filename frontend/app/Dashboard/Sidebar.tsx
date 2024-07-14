@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faPlusSquare, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faPlusSquare, faSignOutAlt, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
   return (
@@ -26,12 +26,20 @@ const Sidebar = () => {
               </div>
             </Link>
           </li>
+          <li className="p-4 hover:bg-gray-800 transition duration-300 ease-in-out transform hover:translate-x-1">
+            <Link href="/Dashboard/MyOffers">
+              <div className="flex items-center text-lg text-gray-200 hover:text-white group">
+                <FontAwesomeIcon icon={faClipboardList} className="text-gray-400 mr-2 text-sm group-hover:animate-bounce h-8" />
+                <span className="group-hover:underline">My Offers</span>
+              </div>
+            </Link>
+          </li>
         </ul>
       </nav>
       <div className="p-4 mt-auto">
         <Link href="/">
           <div className="flex items-center bg-red-500 hover:bg-red-600 text-lg text-white py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">
-            <FontAwesomeIcon icon={faSignOutAlt} className="mr-2 text-sm animate-spin-slow h-10 mr 2" />
+            <FontAwesomeIcon icon={faSignOutAlt} className="mr-2 text-sm animate-spin-slow h-10" />
             <span>Log Out</span>
           </div>
         </Link>
