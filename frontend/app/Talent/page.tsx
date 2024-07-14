@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useCategory } from '../../app/CategorieContext/CategoryContext';
 
 interface Talent {
   id: number;
@@ -15,7 +16,9 @@ interface Talent {
 }
 
 const Page: React.FC = () => {
+  const { selectedCategory } = useCategory();
   const [talents, setTalents] = useState<Talent[]>([]);
+  const [filteredTalents, setFilteredTalents] = useState<Talent[]>([]);
 
   useEffect(() => {
     const fetchTalents = async () => {
@@ -30,6 +33,7 @@ const Page: React.FC = () => {
     fetchTalents();
   }, []);
 
+
   const handleApply = async (talent: Talent) => {
     try {
       const response = await axios.post('http://127.0.0.1:5000/api/clienttalent/add', { talent });
@@ -39,13 +43,20 @@ const Page: React.FC = () => {
       alert('Failed to send application.');
     }
   };
+  useEffect(() => {
+    if (selectedCategory) {
+      setFilteredTalents(talents.filter(talent => talent.category === selectedCategory));
+    } else {
+      setFilteredTalents(talents);
+    }
+  }, [selectedCategory, talents]);
 
   return (
-    <div className="flex flex-wrap justify-center">
-      {talents.map((element) => (
-        <div key={element.id} className="max-w-sm mx-4 bg-white border rounded shadow-sm mt-5 flex-shrink-0">
+    <div id="talents-section" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
+      {filteredTalents.map((element) => (
+        <div key={element.id} className="max-w-sm bg-white border rounded shadow-lg overflow-hidden flex flex-col transition transform hover:scale-105">
           <div className="relative">
-            <img src={element.imageUrl} alt={element.title} className="w-full rounded-t" />
+            <img src={element.imageUrl} alt={element.title} className="w-full h-64 object-cover transition transform hover:scale-105"/>
             <div className="absolute top-4 left-4 text-white">
               <h2 className="text-xl font-bold">{element.category}</h2>
             </div>
@@ -73,7 +84,9 @@ const Page: React.FC = () => {
             <span className="text-sm font-bold">À partir {element.price} $US</span>
           </div>
           <Link href={`/Talent/TalentDetail?id=${element.id}&title=${element.title}&description=${element.description}&imageUrl=${element.imageUrl}&price=${element.price}&category=${element.category}&rating=${element.rating}&delivery=${element.delivery}`}>
-            <button className="mt-4 px-4 py-2 bg-blue-600 rounded-full text-white flex justify-center items-center">More Detail</button>
+            <button className="w-full bg-blue-600 text-white py-2 rounded-b hover:bg-blue-700 transition duration-300">
+              See More
+            </button>
           </Link>
           <button 
             onClick={() => handleApply(element)} 

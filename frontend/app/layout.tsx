@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { CategoryProvider } from '../app/CategorieContext/CategoryContext';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,11 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
+    // we need to wrap our application with the context Provider so it can be accessible in any compnent without passing props
     <html lang="en">
       <body className={inter.className}>
+        <CategoryProvider >
         <Navbar/>
         {children}
         <Footer/>
+        </CategoryProvider >
         </body>
     </html>
   );
