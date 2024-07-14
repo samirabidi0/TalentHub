@@ -1,18 +1,18 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect, useRef } from 'react';
 
 const NumberOfUsers = () => {
   const [freelancers, setFreelancers] = useState<number>(0);
   const [employers, setEmployers] = useState<number>(0);
   const [innovations, setInnovations] = useState<number>(0);
   const [blogUpdates, setBlogUpdates] = useState<number>(0);
+  const [hasCounted, setHasCounted] = useState<boolean>(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const startCounting = (setState: React.Dispatch<React.SetStateAction<number>>, target: number) => {
-
-        //logic for starting the count from 0 until reaching the selected number
       let current = 0;
-      const increment = target / 150; 
+      const increment = target / 50; 
       const interval = setInterval(() => {
         current += increment;
         if (current >= target) {
@@ -21,25 +21,35 @@ const NumberOfUsers = () => {
         } else {
           setState(Math.floor(current));
         }
-      }, 20);
+      }, 50);
     };
 
-    startCounting(setFreelancers, 985475);
-    startCounting(setEmployers, 98);
-    startCounting(setInnovations, 1246);
-    startCounting(setBlogUpdates, 980);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasCounted) {
+          setHasCounted(true);
+          startCounting(setFreelancers, 998526);
+          startCounting(setEmployers, 98);
+          startCounting(setInnovations, 1246);
+          startCounting(setBlogUpdates, 980);
+        }
+      });
+    }, { threshold: 0.1 });
 
-    // Clear intervals on component unmount
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    // Clean up observer on component unmount
     return () => {
-      clearInterval(freelancers);
-      clearInterval(employers);
-      clearInterval(innovations);
-      clearInterval(blogUpdates);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
     };
-  }, []);
+  }, [hasCounted]);
 
   return (
-    <div className="flex items-center justify-center mt-4 mb-4 bg-gray-100">
+    <div ref={sectionRef} className="flex items-center justify-center mt-4 mb-4 bg-gray-100">
       <div className="max-w-6xl mx-auto p-8 bg-white rounded-lg shadow-md border border-gray-300">
         <div className="grid grid-cols-4 gap-8 text-center">
           <div className="p-4">
@@ -69,3 +79,4 @@ const NumberOfUsers = () => {
 };
 
 export default NumberOfUsers;
+  

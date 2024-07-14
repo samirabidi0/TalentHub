@@ -1,9 +1,8 @@
 "use client"
-
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
+import LoginPopup from './PopUp'; 
 
 interface Talent {
   id: number;
@@ -18,9 +17,10 @@ interface Talent {
 
 const HeroSection: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('');
-  const [filteredTalents, setFilteredTalents] = useState<Talent[]>([]);
+  const [filteredTalents, setFilteredTalents] = useState<Talent[]>([]);  // this a state for filtred talent
   const talentsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const [showLoginPopup, setShowLoginPopup] = useState(false); // this a State for showing the login popup
 
   useEffect(() => {
     const fetchTalents = async () => {
@@ -39,6 +39,8 @@ const HeroSection: React.FC = () => {
     setSearchValue(event.target.value);
   };
 
+
+  //  helper function so when the use search for a talent the page will scroll down and show him the searched talent
   const scrollToTalents = () => {
     if (talentsRef.current) {
       talentsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -66,6 +68,17 @@ const HeroSection: React.FC = () => {
     router.push(`/Talent/TalentDetail?id=${id}`);
   };
 
+  const handlePostTalentClick = () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // Show login popup if user is not logged in
+      setShowLoginPopup(true);
+    } else {
+      // Navigate to post talent page if user is logged in
+      router.push('/AuthSelection');
+    }
+  };
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <video
@@ -81,7 +94,10 @@ const HeroSection: React.FC = () => {
             Find & Hire Freelancers
           </h1>
           <div className="absolute right-10 top-20">
-            <button className="px-12 py-6 text-xl font-semibold text-white bg-green-600 hover:bg-green-500 focus:outline-none rounded-full mt-80 animate-bounce">
+            <button
+              onClick={handlePostTalentClick}
+              className="px-12 py-6 text-xl font-semibold text-white bg-green-600 hover:bg-green-500 focus:outline-none rounded-full mt-80 animate-bounce"
+            >
               Post a Talent (For Free)
             </button>
           </div>
@@ -90,7 +106,7 @@ const HeroSection: React.FC = () => {
           Browse 3 Million+ Experts Free
         </h2>
         <p className="text-xl mb-6 text-shadow-sm animate-fadeInUp animation-delay-400">
-          SkillMatcher makes it easy for quality employers and freelancers to connect,
+          TalentLinkr makes it easy for quality employers and freelancers to connect,
           <br /> collaborate, and get work done flexibly and securely.
         </p>
         <div className="w-full md:w-1/3 my-10 border-t border-gray-300 animate-fadeInUp animation-delay-500"></div>
@@ -155,6 +171,9 @@ const HeroSection: React.FC = () => {
           ))}
         </div>
       )}
+
+      {/* Render login popup if showLoginPopup state is true */}
+      {showLoginPopup && <LoginPopup onClose={() => setShowLoginPopup(false)} />}
     </div>
   );
 };

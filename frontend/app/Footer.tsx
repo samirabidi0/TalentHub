@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
         <div className="text-white">
           <h2 className="text-xl font-bold mb-4">About SkillMatcher</h2>
           <p className="text-sm">
-            SkillMatcher is a platform connecting freelancers and clients worldwide,
+            TalentLinkr is a platform connecting freelancers and clients worldwide,
             facilitating seamless collaboration. Our mission is to empower individuals
             to achieve their professional goals through meaningful connections.
           </p>
@@ -43,7 +43,6 @@ const Footer: React.FC = () => {
                 About Us
               </button>
             </li>
-            {/* Add more buttons for other sections as needed */}
           </ul>
         </div>
         <div>
