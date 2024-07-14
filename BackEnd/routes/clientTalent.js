@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const {addClientTalent,getClientTalents,getClient} = require('../controllers/clientTalent.js')
+const {addClientTalent,getClientTalents,getClientAppliedTalents} = require('../controllers/clientTalent.js')
 
 router.get('/getAll', getClientTalents)
-router.get('/getAllTalent',getClient)
+router.get('/getAllTalent',getClientAppliedTalents)
 router.post('/add', addClientTalent)
 
 module.exports = router

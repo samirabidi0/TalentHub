@@ -75,12 +75,6 @@ const Page: React.FC = () => {
           <Link href={`/Talent/TalentDetail?id=${element.id}&title=${element.title}&description=${element.description}&imageUrl=${element.imageUrl}&price=${element.price}&category=${element.category}&rating=${element.rating}&delivery=${element.delivery}`}>
             <button className="mt-4 px-4 py-2 bg-blue-600 rounded-full text-white flex justify-center items-center">More Detail</button>
           </Link>
-          <button 
-            onClick={() => handleApply(element)} 
-            className="mt-4 px-4 py-2 bg-green-600 rounded-full text-white flex justify-center items-center"
-          >
-            Apply
-          </button>
         </div>
       ))}
     </div>
