@@ -14,7 +14,7 @@ const OurMission: React.FC = () => {
         <h2 className="text-3xl font-bold mb-4">Your Vision, Our Mission</h2>
         <h3 className="text-xl font-semibold mb-4">Revolutionizing the Freelance Industry</h3>
         <p className="text-lg">
-          At SkillMatcher, we’re committed to empowering freelancers and businesses to make meaningful connections.
+          At TalentLinkr, we’re committed to empowering freelancers and businesses to make meaningful connections.
           Our goal is to revolutionize the freelance industry, creating a platform that’s accessible, efficient, and transparent.
           We believe in the power of collaboration and strive to provide a space where creativity and innovation thrive.
           Join us as we transform the freelance landscape, one connection at a time.

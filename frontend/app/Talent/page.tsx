@@ -57,8 +57,8 @@ const Page: React.FC = () => {
         <div key={element.id} className="max-w-sm bg-white border rounded shadow-lg overflow-hidden flex flex-col transition transform hover:scale-105">
           <div className="relative">
             <img src={element.imageUrl} alt={element.title} className="w-full h-64 object-cover transition transform hover:scale-105"/>
-            <div className="absolute top-4 left-4 text-white">
-              <h2 className="text-xl font-bold">{element.category}</h2>
+            <div className="absolute top-4 left-4 bg-blue-600 bg-opacity-75 text-white p-2 rounded shadow-lg">
+              <h2 className="text-2xl font-bold">{element.category}</h2>
             </div>
             <div className="absolute bottom-4 right-4 flex items-center space-x-1 text-white">
               <span className="block w-3 h-3 bg-white rounded-full"></span>

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { useState } from "react";
 import axios from "axios";
@@ -16,20 +16,21 @@ const Login = () => {
 
     try {
       // Set the endpoint based on userType
-      const endpoint = userType === "freelancer" 
-        ? "http://127.0.0.1:5000/api/freelance/login" 
-        : "http://127.0.0.1:5000/api/client/signIn";
+      const endpoint =
+        userType === "freelancer"
+          ? "http://127.0.0.1:5000/api/freelance/login"
+          : "http://127.0.0.1:5000/api/client/signIn";
 
       const response = await axios.post(endpoint, {
         email,
         password,
       });
 
-      // Returns a token upon successful login
+      // Returns the token and the role after successful login
       const { token, role } = response.data;
       // Store the token in localStorage
       localStorage.setItem("token", token);
-      localStorage.setItem('role',  role);
+      localStorage.setItem("role", role);
 
       // Redirect based on user type
       if (role === "freelancer") {
@@ -40,6 +41,10 @@ const Login = () => {
     } catch (error: any) {
       setError(error.response.data.message);
     }
+  };
+
+  const redirectToRegister = () => {
+    router.push("/AuthSelection");
   };
 
   return (
@@ -141,7 +146,10 @@ const Login = () => {
 
         <div className="text-center text-sm">
           <span className="bg-gray-200 px-2">Don't have an account?</span>
-          <button className="text-green-600 hover:text-green-700 font-medium ml-2" onClick={() => {}}>
+          <button
+            className="text-green-600 hover:text-green-700 font-medium ml-2 focus:outline-none"
+            onClick={redirectToRegister}
+          >
             Register
           </button>
         </div>
