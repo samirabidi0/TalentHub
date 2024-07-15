@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import RegistrationSuccessPopup from "./PopUp"
 
 interface User {
   name: string;
@@ -21,6 +22,7 @@ const SignUpAsClient: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const router = useRouter();
 
@@ -59,7 +61,7 @@ const SignUpAsClient: React.FC = () => {
     try {
       const response = await axios.post('http://127.0.0.1:5000/api/client/signup', newUser);
       console.log(response.data); 
-      router.push('/'); // Redirect after successful registration to the home Page
+      setShowSuccessPopup(true);
     } catch (error:any) {
       setError(error.message);
     }
@@ -167,6 +169,8 @@ const SignUpAsClient: React.FC = () => {
         </div>
         {error && <p className="text-red-500 text-xs italic text-center mt-4">{error}</p>}
       </form>
+       {/* Conditional rendering of success popup */}
+       {showSuccessPopup && <RegistrationSuccessPopup message="Congratulations!" />}
     </div>
   );
 };

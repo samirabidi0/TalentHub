@@ -12,7 +12,7 @@ const config: Config = {
   variants: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"),require('tailwindcss-animate')],
   daisyui: {
     themes: ["light", "dark", "cupcake"], 
   },

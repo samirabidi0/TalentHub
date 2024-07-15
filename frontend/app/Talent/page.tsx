@@ -33,6 +33,16 @@ const Page: React.FC = () => {
     fetchTalents();
   }, []);
 
+
+  const handleApply = async (talent: Talent) => {
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/api/clienttalent/add', { talent });
+      alert('Application sent successfully!');
+    } catch (error) {
+      console.error('Error applying for talent:', error);
+      alert('Failed to send application.');
+    }
+  };
   useEffect(() => {
     if (selectedCategory) {
       setFilteredTalents(talents.filter(talent => talent.category === selectedCategory));
@@ -57,7 +67,7 @@ const Page: React.FC = () => {
             </div>
           </div>
           <div className="flex items-center p-4">
-            <img src={element.imageUrl} alt={element.title} className="w-10 h-10 rounded-full"/>
+            <img src={element.imageUrl} alt={element.title} className="w-10 h-10 rounded-full" />
             <div className="ml-3 flex-1">
               <p className="text-sm font-semibold">{element.title}</p>
               <p className="text-sm text-gray-600 truncate">{element.description.split(',')[0]}</p>
@@ -78,6 +88,7 @@ const Page: React.FC = () => {
               See More
             </button>
           </Link>
+       
         </div>
       ))}
     </div>
