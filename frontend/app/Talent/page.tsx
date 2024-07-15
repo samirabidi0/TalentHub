@@ -1,4 +1,3 @@
-// Talents.tsx
 'use client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -34,6 +33,16 @@ const Page: React.FC = () => {
     fetchTalents();
   }, []);
 
+
+  const handleApply = async (talent: Talent) => {
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/api/clienttalent/add', { talent });
+      alert('Application sent successfully!');
+    } catch (error) {
+      console.error('Error applying for talent:', error);
+      alert('Failed to send application.');
+    }
+  };
   useEffect(() => {
     if (selectedCategory) {
       setFilteredTalents(talents.filter(talent => talent.category === selectedCategory));
@@ -43,13 +52,13 @@ const Page: React.FC = () => {
   }, [selectedCategory, talents]);
 
   return (
-    <div id="talents-section" className="flex flex-wrap justify-center">
+    <div id="talents-section" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
       {filteredTalents.map((element) => (
-        <div key={element.id} className="max-w-sm mx-4 bg-white border rounded shadow-sm mt-5 flex-shrink-0">
+        <div key={element.id} className="max-w-sm bg-white border rounded shadow-lg overflow-hidden flex flex-col transition transform hover:scale-105">
           <div className="relative">
-            <img src={element.imageUrl} alt={element.title} className="w-full rounded-t"/>
-            <div className="absolute top-4 left-4 text-white">
-              <h2 className="text-xl font-bold">{element.category}</h2>
+            <img src={element.imageUrl} alt={element.title} className="w-full h-64 object-cover transition transform hover:scale-105"/>
+            <div className="absolute top-4 left-4 bg-blue-600 bg-opacity-75 text-white p-2 rounded shadow-lg">
+              <h2 className="text-2xl font-bold">{element.category}</h2>
             </div>
             <div className="absolute bottom-4 right-4 flex items-center space-x-1 text-white">
               <span className="block w-3 h-3 bg-white rounded-full"></span>
@@ -58,7 +67,7 @@ const Page: React.FC = () => {
             </div>
           </div>
           <div className="flex items-center p-4">
-            <img src={element.imageUrl} alt={element.title} className="w-10 h-10 rounded-full"/>
+            <img src={element.imageUrl} alt={element.title} className="w-10 h-10 rounded-full" />
             <div className="ml-3 flex-1">
               <p className="text-sm font-semibold">{element.title}</p>
               <p className="text-sm text-gray-600 truncate">{element.description.split(',')[0]}</p>
@@ -75,7 +84,7 @@ const Page: React.FC = () => {
             <span className="text-sm font-bold">À partir {element.price} $US</span>
           </div>
           <Link href={`/Talent/TalentDetail?id=${element.id}&title=${element.title}&description=${element.description}&imageUrl=${element.imageUrl}&price=${element.price}&category=${element.category}&rating=${element.rating}&delivery=${element.delivery}`}>
-            <button className="w-full bg-blue-600 text-white py-2 rounded-b hover:bg-blue-700">
+            <button className="w-full bg-blue-600 text-white py-2 rounded-b hover:bg-blue-700 transition duration-300">
               See More
             </button>
           </Link>

@@ -26,6 +26,9 @@ const EditProfile: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
   const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
+
+  
+
   useEffect(() => {
     const fetchFreelancer = async () => {
       try {
@@ -173,7 +176,3 @@ const EditProfile: React.FC = () => {
 };
 
 export default EditProfile;
-
-
-
-
