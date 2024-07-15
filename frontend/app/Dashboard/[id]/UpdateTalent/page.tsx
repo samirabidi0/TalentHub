@@ -28,6 +28,8 @@ const UpdateTalent: React.FC<{ params: { id: number } }> = ({ params }) => {
       try {
         const response = await axios.get<Talent>(`http://127.0.0.1:5000/api/talents/getAll/${params.id}`);
         setTalent(response.data);
+        console.log(response.data);
+        
       } catch (error) {
         console.error('Error fetching talent:', error);
       }
@@ -48,11 +50,14 @@ const UpdateTalent: React.FC<{ params: { id: number } }> = ({ params }) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    console.log(name);
+    
     setTalent({
       ...talent,
       [name]: value
     });
   };
+ 
 
   return (
     <div className=''>
@@ -163,7 +168,7 @@ const UpdateTalent: React.FC<{ params: { id: number } }> = ({ params }) => {
               onChange={handleChange}
               className="outline-none appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
-            <button className="ml-72 mt-2 bg-[#108a00] hover:bg-[#3d9731] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Upload!</button>
+            {/* <button className="ml-72 mt-2 bg-[#108a00] hover:bg-[#3d9731] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Upload!</button> */}
           </div>
 
           <button
