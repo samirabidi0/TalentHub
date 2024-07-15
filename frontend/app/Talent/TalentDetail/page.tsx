@@ -33,6 +33,24 @@ const TalentDetail: React.FC = () => {
       console.error('Error applying for talent:', error);
       // Handle error (show error message or update UI accordingly)
       window.alert('Failed to send application. Please try again later.');
+=======
+      const clientId = 1; // Replace this with the actual client ID, possibly from authentication context
+      const talentId = parseInt(id || '0');
+
+      const response = await axios.post('http://127.0.0.1:5000/api/clientTalent', {
+        clientId,
+        talentId,
+        message: comment
+      });
+
+      if (response.status === 201) {
+        alert('Applied successfully!');
+      } else {
+        alert('Failed to apply!');
+      }
+    } catch (error) {
+      console.error('Error applying for talent:', error);
+      alert('Error applying for talent');
     }
   };
 

@@ -88,7 +88,6 @@ const Page: React.FC = () => {
               See More
             </button>
           </Link>
-       
         </div>
       ))}
     </div>

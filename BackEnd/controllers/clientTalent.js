@@ -58,4 +58,3 @@ module.exports = {
             res.status(500).json({ error: 'Failed to update client talent status' });
         }
     }
-};
